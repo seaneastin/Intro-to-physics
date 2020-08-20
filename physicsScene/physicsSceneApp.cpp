@@ -3,6 +3,10 @@
 #include "Font.h"
 #include "Input.h"
 
+
+
+
+
 physicsSceneApp::physicsSceneApp() {
 
 }
@@ -13,6 +17,9 @@ physicsSceneApp::~physicsSceneApp() {
 
 bool physicsSceneApp::startup() {
 	
+
+
+
 	m_2dRenderer = new aie::Renderer2D();
 
 	// TODO: remember to change this when redistributing a build!
