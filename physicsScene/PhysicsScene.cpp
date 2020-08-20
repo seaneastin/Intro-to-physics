@@ -8,6 +8,7 @@ PhysicsScene::PhysicsScene()
 
 PhysicsScene::~PhysicsScene()
 {
+
 }
 
 void PhysicsScene::addActor(PhysicsObject* actor)
