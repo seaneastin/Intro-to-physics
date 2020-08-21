@@ -4,7 +4,7 @@
 #include "Input.h"
 #include "PhysicsScene.h"
 #include <Gizmos.h>
-
+#include "Sphere.h"
 
 
 
@@ -30,8 +30,12 @@ bool physicsSceneApp::startup() {
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
 	m_physicsScene = new PhysicsScene();
+	m_physicsScene->setGravity(glm::vec2(0, 0));
 	m_physicsScene->setTimeStep(0.01f);
 
+
+	Sphere* ball = new Sphere(glm::vec2(-40, 0), glm::vec2(10, 30), 3.0f, 5, glm::vec4(1, 0, 0, 1));
+	m_physicsScene->addActor(ball);
 	return true;
 }
 
@@ -66,7 +70,7 @@ void physicsSceneApp::draw() {
 
 	// draw your stuff here!
 	static float aspectRatio = 16 / 9.f;
-	aie::Gizmos::draw2D(glm::ortho<float>(-100, 100, -100 / aspectRatio, 100 / aspectRatio, 1.0f, 1.0f));
+	aie::Gizmos::draw2D(glm::ortho<float>(-100, 100, -100 / aspectRatio, 100 / aspectRatio, -1.0f, 1.0f));
 
 
 	

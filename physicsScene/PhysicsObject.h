@@ -2,9 +2,9 @@
 #include "glm\ext.hpp"
 
 enum ShapeType {
-	Plane = 0,
-	Spere,
-	box
+	PLANE = 0,
+	SPHERE,
+	BOX
 };
 
 class PhysicsObject
