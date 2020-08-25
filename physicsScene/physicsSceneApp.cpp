@@ -33,9 +33,9 @@ bool physicsSceneApp::startup() {
 	m_physicsScene->setGravity(glm::vec2(0, -10));
 	m_physicsScene->setTimeStep(0.01f);
 
-	
-	Sphere* ball = new Sphere(glm::vec2(-40, 0), glm::vec2(0, 40), 3.0f, 5, glm::vec4(1, 0, 0, 1));
-	m_physicsScene->addActor(ball);
+	setupContinuousDemo(glm::vec2(-40.0f, 0.0f), glm::vec2(7.5f, 7.5f), 10);
+
+
 	return true;
 }
 
@@ -50,7 +50,7 @@ void physicsSceneApp::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	aie::Gizmos::clear();
+	//aie::Gizmos::clear();
 
 	m_physicsScene->update(deltaTime);
 	m_physicsScene->updateGizmos();
@@ -79,4 +79,29 @@ void physicsSceneApp::draw() {
 
 	// done drawing sprites
 	m_2dRenderer->end();
+}
+
+void physicsSceneApp::setupContinuousDemo(glm::vec2 startPos, glm::vec2 velocity, float gravity)
+{
+	float time = 0.0f;
+	float timeStep = 0.5f;
+	float radius = 1.0f;
+	int segments = 12;
+	glm::vec4 color = glm::vec4(1, 1, 0, 1);
+	glm::vec2 endPos;
+	while (time <= 5)
+	{
+		//calculate the x, y position of the projectile at time
+
+		float x = startPos.x + velocity.x * time;
+		float y = (startPos.y + velocity.y * time) + (.5f * -gravity * (time * time));
+
+
+
+
+		endPos = glm::vec2(x, y);
+
+		aie::Gizmos::add2DCircle(endPos, radius, segments, color);
+		time += timeStep;
+	}
 }
