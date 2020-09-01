@@ -29,12 +29,19 @@ bool physicsSceneApp::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
+	glm::vec2 gravity = glm::vec2(0, -10);
+
 	m_physicsScene = new PhysicsScene();
 	m_physicsScene->setGravity(glm::vec2(0, -10));
 	m_physicsScene->setTimeStep(0.01f);
 
-	setupContinuousDemo(glm::vec2(-40.0f, 0.0f), glm::vec2(7.5f, 7.5f), 10);
+	glm::vec2 initialvelocity = glm::vec2(40.0f, 0.0f);
+	glm::vec2 initialposition = glm::vec2(0.0f, 0.0f);
 
+	Sphere* ball = new Sphere(initialposition, initialvelocity, 1.0f, 1.0f, glm::vec4(128, 0, 128, 1));
+	
+	//setupContinuousDemo(initialposition, initialvelocity, gravity.y);
+	m_physicsScene->addActor(ball);
 
 	return true;
 }
@@ -50,7 +57,7 @@ void physicsSceneApp::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	//aie::Gizmos::clear();
+	aie::Gizmos::clear();
 
 	m_physicsScene->update(deltaTime);
 	m_physicsScene->updateGizmos();
@@ -94,7 +101,7 @@ void physicsSceneApp::setupContinuousDemo(glm::vec2 startPos, glm::vec2 velocity
 		//calculate the x, y position of the projectile at time
 
 		float x = startPos.x + velocity.x * time;
-		float y = (startPos.y + velocity.y * time) + (.5f * -gravity * (time * time));
+		float y = (startPos.y + velocity.y * time) + (.5f * gravity * (time * time));
 
 
 
