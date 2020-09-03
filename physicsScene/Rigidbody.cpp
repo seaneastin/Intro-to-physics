@@ -48,5 +48,5 @@ void Rigidbody::resolveCollision(Rigidbody* actor2)
 		glm::dot(normal, normal * ((1 / m_mass) + (1 / actor2->getMass())));
 
 		glm::vec2 force = normal * j;
-	applyForceToActor(actor2, -force);
+	applyForceToActor(actor2, force);
 }

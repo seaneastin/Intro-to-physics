@@ -39,19 +39,20 @@ bool physicsSceneApp::startup() {
 	glm::vec2 initialvelocity = glm::vec2(0.0f, 0.0f);
 	glm::vec2 initialposition = glm::vec2(-70.0f, 60.0f);
 
-
-	Sphere* ball = new Sphere(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, 0.0f), 1.0f, 1.0f, glm::vec4(128, 0, 128, 1));
-	Sphere* ball2 = new Sphere(initialposition, initialvelocity, 1.0f, 1.0f, glm::vec4(1, 1, 1, 1));
-	
+	Sphere* ball = new Sphere(glm::vec2(10.0f, 10.0f), glm::vec2(0.0f, -99.0f), 1.0f, 1.0f, glm::vec4(128, 0, 128, 1));
+	Sphere* ball2 = new Sphere(glm::vec2(0.0f, 12.0f), glm::vec2(10.0f, 10.0f), 1.0f, 1.0f, glm::vec4(1, 0, 0, 1));
+	Sphere* ball3 = new Sphere(glm::vec2(0.0f, 10.0f), glm::vec2(0.0f, 0.0f), 1.0f, 1.0f, glm::vec4(1, 1, 1, 1));
 	//setupContinuousDemo(initialposition, initialvelocity, gravity.y);
 	m_physicsScene->addActor(ball);
 	m_physicsScene->addActor(ball2);
-
+	m_physicsScene->addActor(ball3);
 	
-	Plane* floor = new Plane(glm::vec2(-1.0f, 2.0f), -6.0f);
-	Plane* floor2 = new Plane(glm::vec2(1.0f, 2.0f), -6.0f);
+	Plane* floor = new Plane(glm::vec2(0.0f, 60.0f), -50.0f);
+	Plane* wall = new Plane(glm::vec2(90.0f, 90.0f), 0);
+	Plane* floor2 = new Plane(glm::vec2(0.0f, 60.0f), 50.0f);
 	m_physicsScene->addActor(floor);
 	m_physicsScene->addActor(floor2);
+	m_physicsScene->addActor(wall);
 
 
 

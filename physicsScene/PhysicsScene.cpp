@@ -145,7 +145,7 @@ bool PhysicsScene::sphere2Plane(PhysicsObject* object1, PhysicsObject* object2)
 
 		sphereToPlaneaDistance -= sphere->getRadius();
 		if (sphereToPlaneaDistance <= 0) {
-			sphere->applyForce(collisionNormal * sphere->getMass());
+			plane->resolveCollision(sphere);
 			return true;
 		}
 	}
@@ -157,7 +157,10 @@ bool PhysicsScene::sphere2Sphere(PhysicsObject* object1, PhysicsObject* object2)
 	Sphere* sphere1 = dynamic_cast<Sphere*>(object1);
 	Sphere* sphere2 = dynamic_cast<Sphere*>(object2);
 	if (sphere1 != nullptr && sphere2 != nullptr) {
-		return glm::distance(sphere1->getPosition(), sphere2->getPosition()) < sphere1->getRadius() + sphere2->getRadius();
+		if (glm::distance(sphere1->getPosition(), sphere2->getPosition()) < sphere1->getRadius() + sphere2->getRadius())
+		{
+			sphere1->resolveCollision(sphere2);
+	    }
 	}
 	return false;
 }
