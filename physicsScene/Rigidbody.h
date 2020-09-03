@@ -13,6 +13,7 @@ public:
 
 
 	virtual bool checkCollision(PhysicsObject* p0ther) = 0;
+	void resolveCollision(Rigidbody* actor2);
 
 	glm::vec2 getPosition() { return m_position; }
 	float getRotatio9n() { return m_rotation; }

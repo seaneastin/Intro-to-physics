@@ -5,6 +5,7 @@
 #include "PhysicsScene.h"
 #include <Gizmos.h>
 #include "Sphere.h"
+#include "Plane.h"
 
 
 
@@ -35,13 +36,24 @@ bool physicsSceneApp::startup() {
 	m_physicsScene->setGravity(glm::vec2(0, -10));
 	m_physicsScene->setTimeStep(0.01f);
 
-	glm::vec2 initialvelocity = glm::vec2(40.0f, 0.0f);
-	glm::vec2 initialposition = glm::vec2(0.0f, 0.0f);
+	glm::vec2 initialvelocity = glm::vec2(0.0f, 0.0f);
+	glm::vec2 initialposition = glm::vec2(-70.0f, 60.0f);
 
-	Sphere* ball = new Sphere(initialposition, initialvelocity, 1.0f, 1.0f, glm::vec4(128, 0, 128, 1));
+
+	Sphere* ball = new Sphere(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, 0.0f), 1.0f, 1.0f, glm::vec4(128, 0, 128, 1));
+	Sphere* ball2 = new Sphere(initialposition, initialvelocity, 1.0f, 1.0f, glm::vec4(1, 1, 1, 1));
 	
 	//setupContinuousDemo(initialposition, initialvelocity, gravity.y);
 	m_physicsScene->addActor(ball);
+	m_physicsScene->addActor(ball2);
+
+	
+	Plane* floor = new Plane(glm::vec2(-1.0f, 2.0f), -6.0f);
+	Plane* floor2 = new Plane(glm::vec2(1.0f, 2.0f), -6.0f);
+	m_physicsScene->addActor(floor);
+	m_physicsScene->addActor(floor2);
+
+
 
 	return true;
 }
