@@ -30,10 +30,10 @@ bool physicsSceneApp::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	glm::vec2 gravity = glm::vec2(0, -10);
+	glm::vec2 gravity = glm::vec2(0, 0);
 
 	m_physicsScene = new PhysicsScene();
-	m_physicsScene->setGravity(glm::vec2(0, -10));
+	m_physicsScene->setGravity(glm::vec2(0, 0));
 	m_physicsScene->setTimeStep(0.01f);
 
 	glm::vec2 initialvelocity = glm::vec2(0.0f, 0.0f);
@@ -48,12 +48,13 @@ bool physicsSceneApp::startup() {
 	m_physicsScene->addActor(ball3);
 	
 	Plane* floor = new Plane(glm::vec2(0.0f, 60.0f), -50.0f);
-	Plane* wall = new Plane(glm::vec2(90.0f, 90.0f), 0);
+	Plane* wall = new Plane(glm::vec2(40.0f, 0.0f), 40.0f);
+	Plane* wall2 = new Plane(glm::vec2(40.0f, 0.0f), -40.0f);
 	Plane* floor2 = new Plane(glm::vec2(0.0f, 60.0f), 50.0f);
 	m_physicsScene->addActor(floor);
 	m_physicsScene->addActor(floor2);
 	m_physicsScene->addActor(wall);
-
+	m_physicsScene->addActor(wall2);
 
 
 	return true;
