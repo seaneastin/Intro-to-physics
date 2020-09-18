@@ -33,15 +33,16 @@ bool physicsSceneApp::startup() {
 	glm::vec2 gravity = glm::vec2(0, 0);
 
 	m_physicsScene = new PhysicsScene();
-	m_physicsScene->setGravity(glm::vec2(0, 0));
+	m_physicsScene->setGravity(gravity);
 	m_physicsScene->setTimeStep(0.01f);
 
 	glm::vec2 initialvelocity = glm::vec2(0.0f, 0.0f);
 	glm::vec2 initialposition = glm::vec2(-70.0f, 60.0f);
-
-	Sphere* ball = new Sphere(glm::vec2(10.0f, 10.0f), glm::vec2(0.0f, -99.0f), 1.0f, 1.0f, glm::vec4(128, 0, 128, 1));
-	Sphere* ball2 = new Sphere(glm::vec2(0.0f, 12.0f), glm::vec2(10.0f, 10.0f), 1.0f, 1.0f, glm::vec4(1, 0, 0, 1));
-	Sphere* ball3 = new Sphere(glm::vec2(0.0f, 10.0f), glm::vec2(0.0f, 0.0f), 1.0f, 1.0f, glm::vec4(1, 1, 1, 1));
+	
+	Sphere* ball = new Sphere(glm::vec2(10.0f, 10.0f), glm::vec2(500.0f, 0.0f), 1.0f, 5.0f, glm::vec4(128, 0, 128, 1));
+	Sphere* ball2 = new Sphere(glm::vec2(0.0f, 40.0f), glm::vec2(0.0f, -900.0f), 1.0f, 5.0f, glm::vec4(1, 0, 0, 1));
+	Sphere* ball3 = new Sphere(glm::vec2(0.0f, 10.0f), glm::vec2(900.0f, -900.0f), 1.0f, 5.0f, glm::vec4(1, 1, 1, 1));
+	
 	//setupContinuousDemo(initialposition, initialvelocity, gravity.y);
 	m_physicsScene->addActor(ball);
 	m_physicsScene->addActor(ball2);
@@ -71,7 +72,7 @@ void physicsSceneApp::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	aie::Gizmos::clear();
+	aie::Gizmos::clear(); 
 
 	m_physicsScene->update(deltaTime);
 	m_physicsScene->updateGizmos();
